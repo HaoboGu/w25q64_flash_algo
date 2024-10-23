@@ -1,29 +1,58 @@
-name: algorithm-test
+name: STM32H7B0VBTx
 variants:
-  - name: algorithm-test
+- name: STM32H7B0VBTx
+  cores:
+  - name: main
+    type: armv7em
+    core_access_options: !Arm
+      ap: 0
+      psel: 0x0
+  memory_map:
+  - !Ram
+    name: RAM_D1
+    range:
+      start: 0x24000000
+      end: 0x24100000
     cores:
-      - name: main
-        type: armv6m
-        core_access_options: !Arm
-          ap: 0x0
-          psel: 0x0
-    memory_map:
-      - !Ram
-          range:
-            start: 0x20000000
-            end: 0x20004000
-          is_boot_memory: false
-          cores:
-            - main
-      - !Nvm
-          range:
-            start: 0x90000000
-            end: 0x90800000
-          is_boot_memory: true
-          cores:
-            - main
-    flash_algorithms:
-      - algorithm-test
+    - main
+  - !Ram
+    name: DTCMRAM
+    range:
+      start: 0x20000000
+      end: 0x20020000
+    cores:
+    - main
+  - !Ram
+    name: RAM_D2
+    range:
+      start: 0x30000000
+      end: 0x30020000
+    cores:
+    - main
+  - !Ram
+    name: RAM_D3
+    range:
+      start: 0x38000000
+      end: 0x38008000
+    cores:
+    - main
+  - !Nvm
+    name: FLASH_Bank1
+    range:
+      start: 0x8000000
+      end: 0x8020000
+    cores:
+    - main
+  - !Nvm
+    name: FLASH
+    range:
+      start: 0x90000000
+      end: 0x9080000
+    # is_boot_memory: true
+    cores:
+    - main
+  flash_algorithms:
+  - algorithm-test
 flash_algorithms:
   - name: algorithm-test
     description: A flash algorithm under test

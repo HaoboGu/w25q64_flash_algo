@@ -414,6 +414,5 @@ impl FlashAlgorithm for Algorithm {
 
 impl Drop for Algorithm {
     fn drop(&mut self) {
-        // info!("drop");
     }
 }
